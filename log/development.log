@@ -145,3 +145,242 @@ ActiveRecord::NoDatabaseError (FATAL:  database "ecoach_development" does not ex
   [1m[36m (40.0ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL) [0m
   [1m[35m (13.7ms)[0m  CREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")
   [1m[36mActiveRecord::SchemaMigration Load (3.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+
+
+Started GET "/" for ::1 at 2016-05-31 21:27:32 -0500
+Processing by ConversationsController#index as HTML
+Completed 500 Internal Server Error in 257ms (ActiveRecord: 23.4ms)
+
+ActiveRecord::StatementInvalid (PG::UndefinedTable: ERROR:  relation "conversations" does not exist
+LINE 5:                WHERE a.attrelid = '"conversations"'::regclas...
+                                          ^
+:               SELECT a.attname, format_type(a.atttypid, a.atttypmod),
+                     pg_get_expr(d.adbin, d.adrelid), a.attnotnull, a.atttypid, a.atttypmod
+                FROM pg_attribute a LEFT JOIN pg_attrdef d
+                  ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+               WHERE a.attrelid = '"conversations"'::regclass
+                 AND a.attnum > 0 AND NOT a.attisdropped
+               ORDER BY a.attnum
+):
+  app/controllers/conversations_controller.rb:3:in `index'
+
+
+  Rendered /Users/test/.rvm/gems/ruby-2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (10.8ms)
+  Rendered /Users/test/.rvm/gems/ruby-2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (12.5ms)
+  Rendered /Users/test/.rvm/gems/ruby-2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.7ms)
+  Rendered /Users/test/.rvm/gems/ruby-2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (150.1ms)
+  Rendered /Users/test/.rvm/gems/ruby-2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.8ms)
+  Rendered /Users/test/.rvm/gems/ruby-2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.6ms)
+  Rendered /Users/test/.rvm/gems/ruby-2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/test/.rvm/gems/ruby-2.3.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.7ms)
+  Rendered /Users/test/.rvm/gems/ruby-2.3.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (133.4ms)
+  Rendered /Users/test/.rvm/gems/ruby-2.3.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.7ms)
+  Rendered /Users/test/.rvm/gems/ruby-2.3.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.8ms)
+  Rendered /Users/test/.rvm/gems/ruby-2.3.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (335.5ms)
+  [1m[36mConversation Load (38.0ms)[0m  [1mSELECT "conversations".* FROM "conversations"[0m
+  [1m[36m (3.7ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36m (0.6ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (6.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateTurns (20160601024016)
+  [1m[35m (5.8ms)[0m  BEGIN
+  [1m[36m (109.4ms)[0m  [1mCREATE TABLE "turns" ("id" serial primary key, "utterance" character varying, "conversation_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (1.6ms)[0m  CREATE  INDEX  "index_turns_on_conversation_id" ON "turns"  ("conversation_id")
+  [1m[36m (43.0ms)[0m  [1mALTER TABLE "turns" ADD CONSTRAINT "fk_rails_af660711da"
+FOREIGN KEY ("conversation_id")
+  REFERENCES "conversations" ("id")
+[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (6.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateConversations (20160601024010)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (38.2ms)[0m  [1mCREATE TABLE "conversations" ("id" serial primary key, "email" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35mSQL (17.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160601024010"]]
+  [1m[36m (4.3ms)[0m  [1mCOMMIT[0m
+Migrating to CreateTurns (20160601024016)
+  [1m[35m (5.7ms)[0m  BEGIN
+  [1m[36m (19.1ms)[0m  [1mCREATE TABLE "turns" ("id" serial primary key, "utterance" character varying, "conversation_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (1.6ms)[0m  CREATE  INDEX  "index_turns_on_conversation_id" ON "turns"  ("conversation_id")
+  [1m[36m (46.7ms)[0m  [1mALTER TABLE "turns" ADD CONSTRAINT "fk_rails_af660711da"
+FOREIGN KEY ("conversation_id")
+  REFERENCES "conversations" ("id")
+[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160601024016"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.3ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (10.7ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'conversations'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (3.3ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'turns'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+
+
+Started GET "/" for ::1 at 2016-05-31 21:48:16 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (27.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ConversationsController#index as HTML
+  Rendered conversations/index.html.haml within layouts/application (34.9ms)
+Completed 200 OK in 2268ms (Views: 2205.8ms | ActiveRecord: 24.3ms)
+
+
+Started GET "/assets/application.self-5179ba6eefa0bd10f30303aec6ee061eae0ee03dbcddf142d1947ec854c45720.css?body=1" for ::1 at 2016-05-31 21:48:19 -0500
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-05-31 21:48:19 -0500
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-05-31 21:48:19 -0500
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-05-31 21:48:19 -0500
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-05-31 21:48:19 -0500
+
+
+Started POST "/conversations" for ::1 at 2016-05-31 21:48:32 -0500
+Processing by ConversationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"G/BprvsemDUClkKEFiXBVhnr/ncl8xKB+BjGOCftAP5sYZ3T0DMRMG0TnmjgFUhb9VM0+/U6Hy8JlOfJvU+HJA==", "conversation"=>{"email"=>"davidwkaiser@yahoo.com"}, "commit"=>"Start Conversation"}
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (40.6ms)[0m  [1mINSERT INTO "conversations" ("email", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["email", "davidwkaiser@yahoo.com"], ["created_at", "2016-06-01 02:48:32.344030"], ["updated_at", "2016-06-01 02:48:32.344030"]]
+  [1m[35m (31.4ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (21.3ms)[0m  INSERT INTO "turns" ("utterance", "conversation_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["utterance", "What would you like to get from our session today?"], ["conversation_id", 1], ["created_at", "2016-06-01 02:48:32.618182"], ["updated_at", "2016-06-01 02:48:32.618182"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/conversations/1
+Completed 302 Found in 306ms (ActiveRecord: 97.3ms)
+
+
+Started GET "/conversations/1" for ::1 at 2016-05-31 21:48:32 -0500
+Processing by ConversationsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mConversation Load (0.4ms)[0m  SELECT  "conversations".* FROM "conversations" WHERE "conversations"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mTurn Load (0.5ms)[0m  [1mSELECT "turns".* FROM "turns" WHERE "turns"."conversation_id" = $1[0m  [["conversation_id", 1]]
+  Rendered conversations/show.html.haml within layouts/application (29.1ms)
+Completed 200 OK in 134ms (Views: 91.0ms | ActiveRecord: 0.9ms)
+
+
+Started POST "/conversations/1/turns" for ::1 at 2016-05-31 21:48:39 -0500
+Processing by TurnsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"X0LOXbMPo/JDuwBVZuryDx9RwPpMVsJqyvNYgj0IEDgo0zogmCIq9yw+3LmQ2nsC8+kKdpyfz8Q7f3lzp6qX4g==", "turn"=>{"utterance"=>"clarity"}, "commit"=>"Submit Response", "conversation_id"=>"1"}
+  [1m[35mConversation Load (0.5ms)[0m  SELECT  "conversations".* FROM "conversations" WHERE "conversations"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "turns" ("utterance", "conversation_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["utterance", "clarity"], ["conversation_id", 1], ["created_at", "2016-06-01 02:48:39.154788"], ["updated_at", "2016-06-01 02:48:39.154788"]]
+  [1m[36m (5.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "turns" ("utterance", "conversation_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["utterance", "What would you have to give up to do that?"], ["conversation_id", 1], ["created_at", "2016-06-01 02:48:39.165043"], ["updated_at", "2016-06-01 02:48:39.165043"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+Redirected to http://localhost:3000/conversations/1
+Completed 302 Found in 22ms (ActiveRecord: 7.4ms)
+
+
+Started GET "/conversations/1" for ::1 at 2016-05-31 21:48:39 -0500
+Processing by ConversationsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mConversation Load (0.4ms)[0m  [1mSELECT  "conversations".* FROM "conversations" WHERE "conversations"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mTurn Load (0.3ms)[0m  SELECT "turns".* FROM "turns" WHERE "turns"."conversation_id" = $1  [["conversation_id", 1]]
+  Rendered conversations/show.html.haml within layouts/application (5.6ms)
+Completed 200 OK in 41ms (Views: 38.0ms | ActiveRecord: 0.8ms)
+
+
+Started POST "/conversations/1/turns" for ::1 at 2016-05-31 21:48:45 -0500
+Processing by TurnsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"/mAm0d3QUX2QEzCNSeg+PKrpoDl21D9Tz83F3o8dSfSJ8dKs9v3YeP+W7GG/2LcxRlFqtaYdMv0+QeQvFb/OLg==", "turn"=>{"utterance"=>"beer"}, "commit"=>"Submit Response", "conversation_id"=>"1"}
+  [1m[36mConversation Load (0.4ms)[0m  [1mSELECT  "conversations".* FROM "conversations" WHERE "conversations"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "turns" ("utterance", "conversation_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["utterance", "beer"], ["conversation_id", 1], ["created_at", "2016-06-01 02:48:45.896455"], ["updated_at", "2016-06-01 02:48:45.896455"]]
+  [1m[35m (5.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "turns" ("utterance", "conversation_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["utterance", "What bad thing might happen if you got what you want?"], ["conversation_id", 1], ["created_at", "2016-06-01 02:48:45.906749"], ["updated_at", "2016-06-01 02:48:45.906749"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/conversations/1
+Completed 302 Found in 18ms (ActiveRecord: 7.9ms)
+
+
+Started GET "/conversations/1" for ::1 at 2016-05-31 21:48:45 -0500
+Processing by ConversationsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mConversation Load (0.4ms)[0m  SELECT  "conversations".* FROM "conversations" WHERE "conversations"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mTurn Load (0.4ms)[0m  [1mSELECT "turns".* FROM "turns" WHERE "turns"."conversation_id" = $1[0m  [["conversation_id", 1]]
+  Rendered conversations/show.html.haml within layouts/application (5.5ms)
+Completed 200 OK in 54ms (Views: 50.8ms | ActiveRecord: 0.9ms)
+
+
+Started POST "/conversations/1/turns" for ::1 at 2016-05-31 21:48:56 -0500
+Processing by TurnsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"RXjWyz0rfXLWdU6w4A3z0dft7fD6edUAr0KXobBAcFMy6SK2Fgb0d7nwklwWPXrcO1UnfCqw2K5ezrZQKuL3iQ==", "turn"=>{"utterance"=>"I don't know"}, "commit"=>"Submit Response", "conversation_id"=>"1"}
+  [1m[35mConversation Load (0.5ms)[0m  SELECT  "conversations".* FROM "conversations" WHERE "conversations"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "turns" ("utterance", "conversation_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["utterance", "I don't know"], ["conversation_id", 1], ["created_at", "2016-06-01 02:48:56.536480"], ["updated_at", "2016-06-01 02:48:56.536480"]]
+  [1m[36m (5.8ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "turns" ("utterance", "conversation_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["utterance", "How will you feel if you can't make that happen?"], ["conversation_id", 1], ["created_at", "2016-06-01 02:48:56.546102"], ["updated_at", "2016-06-01 02:48:56.546102"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+Redirected to http://localhost:3000/conversations/1
+Completed 302 Found in 18ms (ActiveRecord: 7.8ms)
+
+
+Started GET "/conversations/1" for ::1 at 2016-05-31 21:48:56 -0500
+Processing by ConversationsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mConversation Load (0.6ms)[0m  [1mSELECT  "conversations".* FROM "conversations" WHERE "conversations"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mTurn Load (0.4ms)[0m  SELECT "turns".* FROM "turns" WHERE "turns"."conversation_id" = $1  [["conversation_id", 1]]
+  Rendered conversations/show.html.haml within layouts/application (6.8ms)
+Completed 200 OK in 47ms (Views: 41.6ms | ActiveRecord: 1.1ms)
+
+
+Started POST "/conversations/1/turns" for ::1 at 2016-05-31 21:49:08 -0500
+Processing by TurnsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"We5qvXsHRhDp5KzBe+o6qb9HQMNYn5XxOfJ+4Fvm3rUuf57AUCrPFYZhcC2N2rOkU/+KT4hWmF/Ifl8RwURZbw==", "turn"=>{"utterance"=>"i'm glad this works!"}, "commit"=>"Submit Response", "conversation_id"=>"1"}
+  [1m[36mConversation Load (0.3ms)[0m  [1mSELECT  "conversations".* FROM "conversations" WHERE "conversations"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "turns" ("utterance", "conversation_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["utterance", "i'm glad this works!"], ["conversation_id", 1], ["created_at", "2016-06-01 02:49:08.739632"], ["updated_at", "2016-06-01 02:49:08.739632"]]
+  [1m[35m (5.9ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "turns" ("utterance", "conversation_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["utterance", "Can you give me some more detail about that?"], ["conversation_id", 1], ["created_at", "2016-06-01 02:49:08.749208"], ["updated_at", "2016-06-01 02:49:08.749208"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/conversations/1
+Completed 302 Found in 18ms (ActiveRecord: 7.5ms)
+
+
+Started GET "/conversations/1" for ::1 at 2016-05-31 21:49:08 -0500
+Processing by ConversationsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mConversation Load (0.3ms)[0m  SELECT  "conversations".* FROM "conversations" WHERE "conversations"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mTurn Load (0.5ms)[0m  [1mSELECT "turns".* FROM "turns" WHERE "turns"."conversation_id" = $1[0m  [["conversation_id", 1]]
+  Rendered conversations/show.html.haml within layouts/application (7.9ms)
+Completed 200 OK in 51ms (Views: 47.8ms | ActiveRecord: 0.8ms)
+
+
+Started PATCH "/conversations/1" for ::1 at 2016-05-31 21:49:14 -0500
+Processing by ConversationsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"tSVNE2wM12hDa1HnzU42RSWiU/oDvGy+Qasn9d2ru+rCtLluRyFebSzujQs7fr9IyRqZdtN1YRCwJwYERwk8MA==", "commit"=>"Click when finished", "id"=>"1"}
+  [1m[35mConversation Load (0.3ms)[0m  SELECT  "conversations".* FROM "conversations" WHERE "conversations"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.2ms)[0m  COMMIT
+Redirected to http://localhost:3000/
+Completed 302 Found in 63ms (ActiveRecord: 0.7ms)
+
+
+Started GET "/" for ::1 at 2016-05-31 21:49:14 -0500
+Processing by ConversationsController#index as HTML
+  Rendered conversations/index.html.haml within layouts/application (2.0ms)
+Completed 200 OK in 32ms (Views: 31.0ms | ActiveRecord: 0.0ms)
