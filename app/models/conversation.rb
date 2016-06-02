@@ -8,7 +8,7 @@ class Conversation < ActiveRecord::Base
     "Can you give me some more detail about that?",
     "Who might get upset at you if you made that change?",
     "What would you have to give up to do that?",
-    "What is one small step you could take to realize that?",
+    "What is one small step you could take to realize your goal?",
     "What is important about that to you?",
     "How will you feel if you can't make that happen?",
     "What is another way you could get that result?"
