@@ -14,6 +14,8 @@ class TurnsController < ApplicationController
     Conversation.question
   end
 
+
+
   private
 
   def turn_params
