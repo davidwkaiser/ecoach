@@ -1,3 +1,4 @@
 $("div.turns").append("<div class='utterance'><p><%= @turn.utterance %></p></div>");
 $("div.turns").append("<div class='utterance'><p><%= @question.utterance %></p></div>");
 $("input[type=text], textarea").val("");
+$('html, body').animate({scrollTop:$(document).height()}, 1000);
