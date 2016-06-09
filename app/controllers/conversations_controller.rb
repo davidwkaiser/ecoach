@@ -27,7 +27,7 @@ class ConversationsController < ApplicationController
     @conversation = Conversation.find(params[:id])
     if @conversation.save
       flash[:notice] = ["Your conversation will be emailed to you shortly"]
-      ConversationMailer.send_conversation(@conversation)
+      ConversationMailer.send_conversation(@conversation).deliver
       redirect_to '/'
     else
       flash.errors.full_messages.uniq
