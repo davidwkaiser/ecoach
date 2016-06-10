@@ -4,11 +4,13 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Here is your conversation! %></h1>
+    <h1>Here is your conversation!</h1>
     <% @conversation.turns.each do |turn| %>
     <p><%= turn.utterance %></p>
     <% end %>
 
+    <p></p>
     <p>Thanks for your time and interest, have a great day!</p>
+    <p>David Kaiser, PhD, PCC</p>
   </body>
 </html>
