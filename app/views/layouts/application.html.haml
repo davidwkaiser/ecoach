@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 %html
   %head
-    %title Auto-Coach
+    %title eCoach
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
     .header
-      %H1 Auto-Coach!
+      %H1 eCoach!
       %H2 Like an Executive Coach, but Free...
       %div.center_me= button_to "Home", root_path, :method => "get"
 
@@ -25,4 +25,4 @@
       %p Created by David Kaiser, PhD
       %p Executive Coach and Ruby on Rails Programmer
       %p
-        =mail_to "dave@darkmatterconsulting.com", "Contact Dave", subject: "Dave is awesome!"
+        =mail_to "dave@darkmatterconsulting.com", "Contact Dave", subject: "Tell me more about eCoach"
