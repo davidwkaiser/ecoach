@@ -1,28 +1,11 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+When I had my own business as an Executive Coach, one of my favorite clients once teased me that "coaches just ask the same 10 questions over and over."  
 
-Things you may want to cover:
+I figured that would be a fun idea for a marketing website, a "coach bot" that asks you randomly selected coaching questions, then saves and mails you a transcript of the conversation. I couldn't build it when I had this idea, but I built it as a project at DBC.  
 
-* Ruby version
+It's fairly straightforward, but I am really proud of this one, because I finally got to realize an idea that I had been hanging on to for so long.  
 
-* System dependencies
+Rails back end (with functioning mailer) and AJAX / jQuery functionality. 
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+SITE: https://radiant-meadow-51132.herokuapp.com/
