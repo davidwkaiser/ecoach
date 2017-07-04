@@ -6,7 +6,7 @@ I figured that would be a fun idea for a marketing website, a "coach bot" that a
 
 It's fairly straightforward, but I am really proud of this one, because I finally got to realize an idea that I had been hanging on to for so long.  
 
-Rails back end (with functioning mailer) and AJAX / jQuery functionality. 
+Rails back end (with functioning mailer) and JavaScript / AJAX / jQuery functionality. 
 
 SITE: https://radiant-meadow-51132.herokuapp.com/
 
